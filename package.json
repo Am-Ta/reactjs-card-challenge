@@ -1,24 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "reactjs-card-challenge",
-  "version": "1.0.0",
-  "description": "A responsive card based design, to be implemented by React &amp; Redux",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Am-Ta/reactjs-card-challenge.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Am-Ta/reactjs-card-challenge/issues"
-  },
-  "homepage": "https://github.com/Am-Ta/reactjs-card-challenge#readme"
-=======
     "name": "reactjs-card-challenge",
     "version": "1.0.0",
     "description": "A responsive card based design, to be implemented by React &amp; Redux",
@@ -62,5 +42,4 @@
         "react": "^16.11.0",
         "react-dom": "^16.11.0"
     }
->>>>>>> configWebpack
 }
