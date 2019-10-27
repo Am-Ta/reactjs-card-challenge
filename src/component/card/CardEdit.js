@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { updateCard } from "../../action/CardAction";
@@ -55,6 +56,11 @@ const CardEdit = ({ cardRes: { current }, updateCard }) => {
             </div>
         </form>
     );
+};
+
+CardEdit.propTypes = {
+    cardRes: PropTypes.shape({ current: PropTypes.object }),
+    updateCard: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

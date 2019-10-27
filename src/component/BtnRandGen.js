@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { selectCard } from "./../action/CardAction";
@@ -16,6 +17,11 @@ const BtnRandGen = ({ cardRes: { current }, selectCard }) => {
             </button>
         </div>
     );
+};
+
+BtnRandGen.propTypes = {
+    cardRes: PropTypes.shape({ current: PropTypes.object }),
+    selectCard: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

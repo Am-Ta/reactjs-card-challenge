@@ -1,6 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import CardItem from "./CardItem";
 import CardEdit from "./CardEdit";
+
 import { connect } from "react-redux";
 
 const CardBox = ({ cardRes: { current } }) => {
@@ -10,6 +13,10 @@ const CardBox = ({ cardRes: { current } }) => {
             {current && <CardEdit />}
         </div>
     );
+};
+
+CardBox.propTypes = {
+    cardRes: PropTypes.shape({ current: PropTypes.object })
 };
 
 const mapStateToProps = state => ({

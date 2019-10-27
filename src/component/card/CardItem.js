@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 import { setCurrent } from "../../action/CardAction";
 
@@ -56,6 +58,11 @@ const CardItem = ({ cardRes: { card }, setCurrent }) => {
             </div>
         </div>
     );
+};
+
+CardItem.propTypes = {
+    cardRes: PropTypes.shape({ card: PropTypes.object }),
+    setCurrent: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
