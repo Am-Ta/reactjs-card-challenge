@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 
-const CardEdit = ({ current: { title, description }, updateCard }) => {
-    const [card, setCard] = useState({ title: "", description: "" });
+import { connect } from "react-redux";
+import { updateCard } from "../../action/CardAction";
 
-    // Load the current title and description of card on the form state
+const CardEdit = ({ cardRes: { current }, updateCard }) => {
+    const { title, description } = current;
+    const [form, setForm] = useState({ title: "", description: "" });
+
+    // Load the current title and description of card for the form state
     useEffect(() => {
-        setCard({ title, description });
+        setForm({ title, description });
     }, []);
 
-    // Handle the changes on the title and description of card
+    // Handle the changes on the title and description of the card
     const handleChange = e => {
-        setCard({ ...card, [e.target.name]: e.target.value });
+        setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // HandleSubmit
+    // Handle the submit for new card
     const handleSubmit = e => {
         e.preventDefault();
 
-        updateCard(card.title, card.description);
+        updateCard(form.title, form.description);
     };
 
     return (
@@ -28,7 +32,7 @@ const CardEdit = ({ current: { title, description }, updateCard }) => {
                     type='text'
                     name='title'
                     onChange={handleChange}
-                    value={card.title}
+                    value={form.title}
                     className='form__input'
                 />
             </div>
@@ -39,7 +43,7 @@ const CardEdit = ({ current: { title, description }, updateCard }) => {
                     type='text'
                     name='description'
                     onChange={handleChange}
-                    value={card.description}
+                    value={form.description}
                     className='form__input'
                 ></textarea>
             </div>
@@ -53,4 +57,11 @@ const CardEdit = ({ current: { title, description }, updateCard }) => {
     );
 };
 
-export default CardEdit;
+const mapStateToProps = state => ({
+    cardRes: state.cardRes
+});
+
+export default connect(
+    mapStateToProps,
+    { updateCard }
+)(CardEdit);

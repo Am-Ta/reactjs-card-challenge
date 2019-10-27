@@ -1,15 +1,8 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { setCurrent } from "../../action/CardAction";
 
-const CardItem = ({ card, setCurrent }) => {
-    // useEffect(() => {
-    //     const audio = new Audio(card.sound);
-    //     if (card.code !== 2) {
-    //         audio.pause();
-    //         audio.currentTime = 0;
-    //     }
-    //     audio.play();
-    // }, [card]);
-
+const CardItem = ({ cardRes: { card }, setCurrent }) => {
     // Select icon relative than the card tag
     const getIcon = () => {
         switch (card.tag) {
@@ -22,15 +15,15 @@ const CardItem = ({ card, setCurrent }) => {
         }
     };
 
-    // update the card
+    // To update the card
     const handleClick = () => {
         setCurrent(card);
     };
 
     return (
-        // The code to equal is 1
+        // The code to equal is 1. so the animation is runing
         <div className={card.code === 1 ? "card card_show" : "card"}>
-            {/* The code to equal is 0 */}
+            {/* The code to equal is 0. so the image is load */}
             {card.code === 0 && (
                 <div className='card__img-box'>
                     <img
@@ -40,12 +33,14 @@ const CardItem = ({ card, setCurrent }) => {
                     />
                 </div>
             )}
-            {/* The code to equal is 2 */}
+
+            {/* The code to equal is 2. so the audio is play */}
             {card.code === 2 && (
                 <div className='card__audio-box'>
                     <audio src={card.sound} currenttime='true' autoPlay></audio>
                 </div>
             )}
+
             <div className='card__info'>
                 <h3 className={`card__title card_${card.tag}`}>
                     {getIcon()}
@@ -54,7 +49,6 @@ const CardItem = ({ card, setCurrent }) => {
                 <p className='card__desc'>{card.description}</p>
             </div>
 
-            {/* Btn For Edit */}
             <div className='card__btn'>
                 <button className='btn btn_dark' onClick={handleClick}>
                     <i className='fas fa-pencil-alt'></i> Edit
@@ -64,4 +58,11 @@ const CardItem = ({ card, setCurrent }) => {
     );
 };
 
-export default CardItem;
+const mapStateToProps = state => ({
+    cardRes: state.cardRes
+});
+
+export default connect(
+    mapStateToProps,
+    { setCurrent }
+)(CardItem);

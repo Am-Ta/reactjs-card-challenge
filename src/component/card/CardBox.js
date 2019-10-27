@@ -1,14 +1,22 @@
 import React from "react";
 import CardItem from "./CardItem";
 import CardEdit from "./CardEdit";
+import { connect } from "react-redux";
 
-const CardBox = ({ card, current, setCurrent, updateCard }) => {
+const CardBox = ({ cardRes: { current } }) => {
     return (
         <div className='card-box'>
-            {!current && <CardItem card={card} setCurrent={setCurrent} />}
-            {current && <CardEdit current={current} updateCard={updateCard} />}
+            {!current && <CardItem />}
+            {current && <CardEdit />}
         </div>
     );
 };
 
-export default CardBox;
+const mapStateToProps = state => ({
+    cardRes: state.cardRes
+});
+
+export default connect(
+    mapStateToProps,
+    {}
+)(CardBox);

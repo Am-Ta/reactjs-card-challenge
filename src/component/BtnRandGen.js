@@ -1,8 +1,13 @@
 import React from "react";
 
-const BtnRandGen = ({ selectRandomCard }) => {
+import { connect } from "react-redux";
+import { selectCard } from "./../action/CardAction";
+
+const BtnRandGen = ({ cardRes: { current }, selectCard }) => {
     // Handle the click for generate random card
-    const handleClick = () => selectRandomCard();
+    const handleClick = () => {
+        !current && selectCard();
+    };
 
     return (
         <div className='btn-box'>
@@ -13,4 +18,11 @@ const BtnRandGen = ({ selectRandomCard }) => {
     );
 };
 
-export default BtnRandGen;
+const mapStateToProps = state => ({
+    cardRes: state.cardRes
+});
+
+export default connect(
+    mapStateToProps,
+    { selectCard }
+)(BtnRandGen);
